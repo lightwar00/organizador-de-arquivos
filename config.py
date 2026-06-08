@@ -3,7 +3,6 @@ import shutil
 
 # 1. Função para criar as pastas de destino
 def criar_pastas(caminho_download):
-    # Usamos o 'dirname' para subir uma pasta (de Downloads para C:\Users\computador)
     caminho_usuario = os.path.dirname(caminho_download)
     
     pastas_destino = {
@@ -19,7 +18,7 @@ def criar_pastas(caminho_download):
             os.makedirs(caminho_completo)
 
 
-# 2. Função para escanear APENAS o Downloads e espalhar os arquivos
+# 2. Função para analisar as pastas e guardar os arquivos
 def organizar_arquivos(caminho_downloads):
     extensoes = {
         "DOCUMENTOS": [".pdf", ".docx", ".doc", ".txt", ".xlsx", ".xls", ".pptx", ".ppt"],
@@ -38,11 +37,8 @@ def organizar_arquivos(caminho_downloads):
         "OUTROS": os.path.join(caminho_downloads)
     }
 
-    # Agora o os.listdir vai ler EXCLUSIVAMENTE o caminho enviado pelo menu (Downloads)
     for arquivo in os.listdir(caminho_downloads):
         caminho_original = os.path.join(caminho_downloads, arquivo)
-
-        # Se for uma pasta, ignora na hora! (Garante que não mexe nas subpastas criadas)
         if os.path.isdir(caminho_original):
             continue
 
